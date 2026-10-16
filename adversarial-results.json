@@ -1,0 +1,300 @@
+{
+ "rows": [
+  {
+   "cycle": "adv-fresh-0",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 1   task: update the dependency list in README",
+   "label": "busy",
+   "label_reason": "fresh single task, no issues",
+   "synthetic": true,
+   "choice_laya": "yes",
+   "conf_laya": 0.562,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.9798
+  },
+  {
+   "cycle": "adv-fresh-1",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 1   task: triage the new CI failure   open issues: 0   last cycle outcome: Completed: awaiting further instructions",
+   "label": "busy",
+   "label_reason": "fresh task + prior idle outcome",
+   "synthetic": true,
+   "choice_laya": "yes",
+   "conf_laya": 0.6065,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.974
+  },
+  {
+   "cycle": "adv-two-2",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 2   task: reply to Casey on telegram (telegram 5 min ago)   task: investigate failing test in tests/test_agent.py",
+   "label": "busy",
+   "label_reason": "two fresh tasks",
+   "synthetic": true,
+   "choice_laya": "no",
+   "conf_laya": 0.0113,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.9813
+  },
+  {
+   "cycle": "adv-hot-3",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 0   open issues: 1   issue #7: Actions workflow failing on main since last push",
+   "label": "busy",
+   "label_reason": "hot issue, empty board",
+   "synthetic": true,
+   "choice_laya": "yes",
+   "conf_laya": 0.0348,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.9256
+  },
+  {
+   "cycle": "adv-hot-4",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 1   task: respond to owner message (telegram 2 min ago)   open issues: 1   issue #8: security advisory for a pinned dep",
+   "label": "busy",
+   "label_reason": "hot issue + telegram",
+   "synthetic": true,
+   "choice_laya": "yes",
+   "conf_laya": 0.8584,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.9802
+  },
+  {
+   "cycle": "adv-many-5",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 0   open issues: 4   issue #9: broken link   issue #10: typo in onboarding   issue #11: feature request: digest email   issue #12: stale badge",
+   "label": "busy",
+   "label_reason": "many fresh issues",
+   "synthetic": true,
+   "choice_laya": "no",
+   "conf_laya": 0.516,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.8141
+  },
+  {
+   "cycle": "adv-fleet-6",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 0   open issues: 1   issue #5: Fleet bottle from zero-alpha requesting status report",
+   "label": "busy",
+   "label_reason": "fleet bottle awaiting reply",
+   "synthetic": true,
+   "choice_laya": "yes",
+   "conf_laya": 0.2555,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.8214
+  },
+  {
+   "cycle": "adv-mixed:-7",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 1   task: check old registration thread (telegram 2026-09-20)   open issues: 1   issue #13: user reports vault 404 on list_issues",
+   "label": "busy",
+   "label_reason": "mixed: stale task + fresh issue",
+   "synthetic": true,
+   "choice_laya": "yes",
+   "conf_laya": 0.6949,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.9831
+  },
+  {
+   "cycle": "adv-task-8",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 1   task: can you summarize what changed in v0.4?",
+   "label": "busy",
+   "label_reason": "task phrased as a question to the agent",
+   "synthetic": true,
+   "choice_laya": "no",
+   "conf_laya": 0.7054,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.9742
+  },
+  {
+   "cycle": "adv-bug-9",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 1   task: agent posted duplicate comment on issue #1 \u2014 investigate echo",
+   "label": "busy",
+   "label_reason": "bug report on board",
+   "synthetic": true,
+   "choice_laya": "yes",
+   "conf_laya": 0.5156,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.9747
+  },
+  {
+   "cycle": "adv-all-10",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 2   task: follow up registration (telegram 2026-09-18)   task: check thread from three weeks ago (telegram 2026-09-20)",
+   "label": "idle",
+   "label_reason": "all tasks stale (weeks old), no issues",
+   "synthetic": true,
+   "choice_laya": "yes",
+   "conf_laya": 0.4038,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.9791
+  },
+  {
+   "cycle": "adv-board-11",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 0   open issues: 0   last cycle outcome: gated_idle",
+   "label": "idle",
+   "label_reason": "board empty, prior gated_idle",
+   "synthetic": true,
+   "choice_laya": "no",
+   "conf_laya": 0.6582,
+   "choice_winnow:e4b": "no",
+   "conf_winnow:e4b": 0.9936
+  },
+  {
+   "cycle": "adv-board-12",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 0   open issues: 0   last cycle outcome: Completed: awaiting further instructions",
+   "label": "idle",
+   "label_reason": "board empty, awaiting outcome",
+   "synthetic": true,
+   "choice_laya": "no",
+   "conf_laya": 0.6375,
+   "choice_winnow:e4b": "no",
+   "conf_winnow:e4b": 0.9914
+  },
+  {
+   "cycle": "adv-one-13",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 1   task: revisit the 2026-09-12 telegram thread",
+   "label": "idle",
+   "label_reason": "one stale task, nothing else",
+   "synthetic": true,
+   "choice_laya": "yes",
+   "conf_laya": 0.3253,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.9807
+  },
+  {
+   "cycle": "adv-borderline:-14",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 1   task: look into the thing Casey mentioned",
+   "label": "busy",
+   "label_reason": "borderline: fresh task phrased vaguely",
+   "synthetic": true,
+   "choice_laya": "yes",
+   "conf_laya": 0.4464,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.976
+  },
+  {
+   "cycle": "adv-borderline:-15",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 0   open issues: 1   issue #4: question for the maintainer about roadmap",
+   "label": "busy",
+   "label_reason": "borderline: issue that may be human-facing",
+   "synthetic": true,
+   "choice_laya": "no",
+   "conf_laya": 0.5135,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.8244
+  },
+  {
+   "cycle": "adv-borderline:-16",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 1   task: old registration follow-up (telegram 2026-09-20)   open issues: 0   last cycle outcome: Completed: attempted registration, blocked on vault 404",
+   "label": "busy",
+   "label_reason": "borderline: stale task but recent outcome says unhandled",
+   "synthetic": true,
+   "choice_laya": "yes",
+   "conf_laya": 0.7018,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.948
+  },
+  {
+   "cycle": "adv-mentions-17",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 0   open issues: 0   last cycle outcome: Completed: the 'Write your first journal entry' task fully",
+   "label": "idle",
+   "label_reason": "mentions of tasks in past outcome only",
+   "synthetic": true,
+   "choice_laya": "no",
+   "conf_laya": 0.745,
+   "choice_winnow:e4b": "no",
+   "conf_winnow:e4b": 0.99
+  },
+  {
+   "cycle": "adv-issue-18",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 0   open issues: 0   last cycle outcome: commented on issue #1 and updated board, nothing further needed",
+   "label": "idle",
+   "label_reason": "issue count zero but historical issue lines in outcome",
+   "synthetic": true,
+   "choice_laya": "no",
+   "conf_laya": 0.7253,
+   "choice_winnow:e4b": "no",
+   "conf_winnow:e4b": 0.9882
+  },
+  {
+   "cycle": "adv-telegram-19",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 0   open issues: 0   last cycle outcome: Completed: replied to all telegram messages",
+   "label": "idle",
+   "label_reason": "telegram messages already consumed (marked done)",
+   "synthetic": true,
+   "choice_laya": "no",
+   "conf_laya": 0.7753,
+   "choice_winnow:e4b": "no",
+   "conf_winnow:e4b": 0.9907
+  },
+  {
+   "cycle": "adv-issue-20",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 0   open issues: fetch failed, count unknown   last cycle outcome: gated_idle",
+   "label": "idle",
+   "label_reason": "issue fetch failed, board empty, prior idle",
+   "synthetic": true,
+   "choice_laya": "no",
+   "conf_laya": 0.4587,
+   "choice_winnow:e4b": "no",
+   "conf_winnow:e4b": 0.2815
+  },
+  {
+   "cycle": "adv-unknown-21",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 0   open issues: unknown (not reconstructable from history)   last cycle outcome: Completed: awaiting further instructions",
+   "label": "idle",
+   "label_reason": "unknown issues but empty board and idle prior",
+   "synthetic": true,
+   "choice_laya": "no",
+   "conf_laya": 0.7068,
+   "choice_winnow:e4b": "no",
+   "conf_winnow:e4b": 0.968
+  },
+  {
+   "cycle": "adv-unknown-22",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 1   task: draft the fleet coordination doc   open issues: unknown (fetch failed)",
+   "label": "busy",
+   "label_reason": "unknown issues BUT board has fresh work",
+   "synthetic": true,
+   "choice_laya": "yes",
+   "conf_laya": 0.7566,
+   "choice_winnow:e4b": "yes",
+   "conf_winnow:e4b": 0.9286
+  },
+  {
+   "cycle": "adv-issues-23",
+   "ts": "adversarial",
+   "digest": "Agent digest: open tasks: 0   open issues: unknown (fetch failed)   last cycle outcome: llm_error after 3 attempts",
+   "label": "busy",
+   "label_reason": "issues unknown and prior outcome was an ERROR (retry worth)",
+   "synthetic": true,
+   "choice_laya": "no",
+   "conf_laya": 0.7212,
+   "choice_winnow:e4b": "no",
+   "conf_winnow:e4b": 0.9472
+  }
+ ],
+ "summary": {
+  "laya": {
+   "zero_false_idle_threshold": 0.75
+  },
+  "winnow:e4b": {
+   "zero_false_idle_threshold": 0.95
+  }
+ }
+}

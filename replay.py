@@ -55,9 +55,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--url", default="http://localhost:11435")
     ap.add_argument("--models", default="laya,winnow:e4b")
+    ap.add_argument("--corpus", default="corpus.jsonl")
     args = ap.parse_args()
     models = args.models.split(",")
-    rows = [json.loads(l) for l in open("corpus.jsonl")]
+    rows = [json.loads(l) for l in open(args.corpus)]
 
     for m in models:
         t0 = time.time()
@@ -106,7 +107,7 @@ def main():
             print(f"  {m} busy conf: {['%.2f' % c for c in confs_busy]}")
 
     json.dump({"rows": results, "summary": summary},
-              open("results.json", "w"), indent=1)
+              open(args.corpus.replace(".jsonl", "-results.json"), "w"), indent=1)
     print("\nlowest zero-false-idle threshold per model:", summary)
 
 

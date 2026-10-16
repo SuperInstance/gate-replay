@@ -31,14 +31,32 @@ is the label.
   case for raising heartbeat cadence (gate first, LLM only when needed).
 - **Actionable: v0.4's default `DECISION_MODEL=laya` is the wrong tool for
   the gate** (it barely fires on real digests). Use a winnow-class model.
-- 3 rows hit server timeouts (excluded, not guessed). winnow cold-load
-  after VRAM eviction measured at 122s — the `decide() timeout=10` bug in
-  agent.py is real; keep models warm or raise the timeout.
+- 3 rows hit server timeouts (excluded, not guessed) — they are the first
+  three rows positionally (post-warmup instability), not ambiguous cases.
 - Known blind spot: "open issues" is not reconstructable from git, so the
   one real busy cycle (issue-driven docs fix) is digest-invisible — every
   model and the minigate distillation read it idle. Production digests
   include live issue titles, so this is a corpus artifact, not a gate
   defect. Recorded, not hidden.
+
+## Adversarial set (24 probes: 15 busy / 9 idle, signal combos the real
+history never shows — stale+fresh mixes, error retries, fetch-failures,
+human-facing issues, consumed-work outcomes)
+
+| model | busy caught | false-idle | idle skipped | zero-false-idle point |
+|---|---|---|---|---|
+| winnow:e4b | 14/15 | 7% (thr 0.6–0.9) | 67% | threshold 0.95 |
+| minigate v1 (corpus-only) | 11/15 | 27% | 78% | — |
+| minigate v2 (+adversarial) | 13/15 | 13% | 78% | — |
+
+Reading: the semantic model generalizes where distilled features don't
+(minigate's misses trace to two learned-but-fragile weights). winnow's
+zero-false-idle point is at **0.95, not 0.6** — a very different
+recommendation than the production default. All numbers are
+idle-detection/busy-detection rates on this corpus, NOT accuracy claims;
+production drift will differ. Run the gate in **shadow mode** (log, don't
+skip) before granting skip authority. Calibration of the 0.96–0.99
+confidences is unverified — treat as ranking, not probability.
 
 ## Next
 
