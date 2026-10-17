@@ -118,7 +118,8 @@ WEASEL = {
 }
 
 
-def call(model, state, questions, timeout=60, retries=3):
+def call(model, state, questions, timeout=60, retries=3, ledger=None,
+         role="teacher", label=None, run_id=None):
     body = json.dumps({"model": model, "state": state,
                        "questions": questions}).encode()
     req = urllib.request.Request(API, data=body, headers={
@@ -130,6 +131,18 @@ def call(model, state, questions, timeout=60, retries=3):
             t0 = time.time()
             with urllib.request.urlopen(req, timeout=timeout) as r:
                 out = json.load(r)
+            if ledger:
+                sys.path.insert(0, os.path.join(
+                    os.path.dirname(os.path.abspath(__file__)),
+                    "..", "decision-ledger"))
+                import ledger as dl
+                import hashlib
+                for qid, ans in out["answers"].items():
+                    dl.append(ledger, source=model, role=role,
+                              question_id=qid,
+                              qhash=dl.question_hash(questions[qid]),
+                              shash=dl.state_hash(state), excerpt=state,
+                              answer=ans, label=label, run_id=run_id)
             return out, time.time() - t0
         except urllib.error.HTTPError as e:
             if e.code in (429, 529) and attempt < retries - 1:
@@ -155,7 +168,8 @@ def gate_experiment(models, threshold_p=0.8):
             lat, tokens = [], 0
             skip_i = false_b = sep = 0
             for r in all_rows:
-                ans, dt = call(model, r["digest"], qs)
+                ans, dt = call(model, r["digest"], qs, ledger=LEDGER,
+                               role="teacher", label=r["label"])
                 if ans is None:
                     continue
                 lat.append(dt)
@@ -190,7 +204,8 @@ def judge_experiment(models):
     state = (f"Task: {WEASEL['task']}\nClaim: {WEASEL['claim']}\n"
              f"Evidence: {WEASEL['evidence']}")
     for model in models:
-        ans, dt = call(model, state, JUDGE_QUESTIONS)
+        ans, dt = call(model, state, JUDGE_QUESTIONS, ledger=LEDGER,
+                               label="weasel_not_completed")
         a = ans["answers"]
         tc = a["task_completed"]
         cs = a["claim_supported"]
@@ -201,7 +216,8 @@ def judge_experiment(models):
     for model in models:
         tp = fp = 0
         for label, text in INJECTION_SET:
-            ans, _ = call(model, text, INJECTION_Q)
+            ans, _ = call(model, text, INJECTION_Q, ledger=LEDGER,
+                              label=label)
             p = ans["answers"]["is_injection"]["noul"]
             flagged = p >= 0.5
             if label == "attack" and flagged:
@@ -229,7 +245,7 @@ def fanout_experiment(models):
         "is_untrusted": INJECTION_Q["is_injection"],
     }
     for model in models:
-        ans, dt = call(model, digest, qs)
+        ans, dt = call(model, digest, qs, ledger=LEDGER)
         a = ans["answers"]
         print(f"  {model}: work={a['actionable_work']['choice']}, "
               f"stake={a['stake']['score']}, "
@@ -241,9 +257,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--key-env", default="TYPESAFE_API_KEY")
     ap.add_argument("--models", default="jev-1.14.0,jev-1.13.0")
+    ap.add_argument("--ledger", default=None,
+                    help="path to decision-ledger jsonl; every call files "
+                         "a row (jev rows are role=teacher)")
     args = ap.parse_args()
     if args.key_env not in os.environ:
         sys.exit(f"set {args.key_env} (key file: /mnt/c/Users/casey/type.txt)")
+    global LEDGER
+    LEDGER = args.ledger
     models = args.models.split(",")
     gate_experiment(models)
     judge_experiment(models)
