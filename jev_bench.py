@@ -262,7 +262,7 @@ def main():
                          "a row (jev rows are role=teacher)")
     args = ap.parse_args()
     if args.key_env not in os.environ:
-        sys.exit(f"set {args.key_env} (key file: /mnt/c/Users/casey/type.txt)")
+        sys.exit(f"set {args.key_env} (set the env var with your API key)")
     global LEDGER
     LEDGER = args.ledger
     models = args.models.split(",")
